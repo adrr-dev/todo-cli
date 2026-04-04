@@ -1,8 +1,10 @@
 // Package repository contains the model and repo
 package repository
 
+import "gorm.io/gorm"
+
 type Todo struct {
-	ID        string `json:"id"`
-	Content   string `json:"content"`
-	Completed bool   `json:"completed"`
+	gorm.Model // This adds ID, CreatedAt, etc.
+	Content    string
+	Completed  bool
 }

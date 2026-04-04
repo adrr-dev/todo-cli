@@ -1,5 +1,5 @@
 # ignore testing data
-data.json
+data.db
 
 # personal executable
 todo-cli

@@ -29,7 +29,7 @@ func ShowTodos(cmd *cobra.Command, args []string) error {
 		return err
 	}
 	for _, value := range data {
-		_, err = fmt.Fprintf(w, "%s\t%s\t%t\n", value.ID, value.Content, value.Completed)
+		_, err = fmt.Fprintf(w, "%d\t%s\t%t\n", value.ID, value.Content, value.Completed)
 		if err != nil {
 			return err
 		}

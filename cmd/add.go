@@ -20,7 +20,7 @@ func addTodo(cmd *cobra.Command, args []string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("new todo created '%s'", todo)
+	fmt.Printf("new todo created '%s'\n", todo)
 	return nil
 }
 

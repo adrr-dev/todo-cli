@@ -8,3 +8,4 @@ a very simple todo cli
 * list todos
 * delete todo
 * toggle completion
+* edit todo

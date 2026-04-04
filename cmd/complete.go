@@ -10,20 +10,29 @@ import (
 var completeCmd = &cobra.Command{
 	Use:   "complete [id]",
 	Short: "toggle completion of a todo with it's id",
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.ExactArgs(0),
 	RunE:  completeTodo,
 }
 
 func completeTodo(cmd *cobra.Command, args []string) error {
-	id := args[0]
-	err := todoService.CompleteTodo(id)
+	id, err := cmd.Flags().GetInt("id")
 	if err != nil {
 		return err
 	}
-	fmt.Printf("todo with id %s complete status changed\n", id)
+	err = todoService.CompleteTodo(id)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("todo with id %d complete status changed\n", id)
 	return nil
 }
 
 func init() {
 	rootCmd.AddCommand(completeCmd)
+
+	completeCmd.Flags().IntP("id", "i", -1, "id to edit")
+
+	if err := completeCmd.MarkFlagRequired("id"); err != nil {
+		fmt.Println(err)
+	}
 }
