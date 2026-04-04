@@ -1,2 +1,5 @@
 # ignore testing data
 data_test.json
+
+# personal executable
+todo-cli
