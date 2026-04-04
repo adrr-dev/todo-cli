@@ -74,17 +74,17 @@ func (s Service) ListTodos() (map[string]*repository.Todo, error) {
 	return data, nil
 }
 
-func (s Service) PutTodo(id, content string) (*repository.Todo, error) {
+func (s Service) EditTodo(id, content string) error {
 	data, err := s.Repo.LoadAll()
 	if err != nil {
-		return nil, err
+		return err
 	}
 	data[id].Content = content
 	err = s.Repo.WriteAll(data)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return data[id], nil
+	return nil
 }
 
 func (s Service) CompleteTodo(id string) error {

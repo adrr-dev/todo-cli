@@ -2,9 +2,6 @@
 
 a very simple todo cli
 
-> [!NOTE]
-> still under construction
-
 ## Features
 
 * add todo

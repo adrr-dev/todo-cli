@@ -8,7 +8,8 @@ import (
 )
 
 func main() {
-	myRepo := &repository.Repo{DataFile: "data.json"}
+	dataFile := "data_test.json"
+	myRepo := &repository.Repo{DataFile: dataFile}
 	myService := &service.Service{Repo: myRepo}
 	cmd.SetService(myService)
 

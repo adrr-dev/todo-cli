@@ -20,7 +20,7 @@ type TodoService interface {
 	FetchTodo(id string) (*repository.Todo, error)
 	RemoveTodo(id string) error
 	ListTodos() (map[string]*repository.Todo, error)
-	PutTodo(id, content string) (*repository.Todo, error)
+	EditTodo(id, content string) error
 	CompleteTodo(id string) error
 }
 
