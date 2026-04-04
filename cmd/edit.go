@@ -28,12 +28,20 @@ func editTodo(cmd *cobra.Command, args []string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("new todo created id:'%s', content:%s\n", id, content)
+	fmt.Printf("new todo created\nid:'%s'\ncontent:%s\n", id, content)
 	return nil
 }
 
 func init() {
 	rootCmd.AddCommand(editCmd)
+
 	editCmd.Flags().StringP("id", "i", "", "id to edit")
 	editCmd.Flags().StringP("content", "c", "empty", "content of todo")
+
+	if err := editCmd.MarkFlagRequired("id"); err != nil {
+		fmt.Println(err)
+	}
+	if err := editCmd.MarkFlagRequired("content"); err != nil {
+		fmt.Println(err)
+	}
 }
