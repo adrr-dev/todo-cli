@@ -1,6 +1,7 @@
 # todo-cli
 
 a very simple todo cli
+uses Golang with Cobra and SQLite with GORM
 
 ## Features
 
