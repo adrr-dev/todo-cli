@@ -9,9 +9,6 @@ import (
 
 func main() {
 	dataFile := "data.db"
-	// myRepo := &repository.Repo{DataFile: dataFile}
-	// myService := &service.Service{Repo: myRepo}
-	//
 
 	myDB := database.Database{DataFile: dataFile}
 	db := myDB.InitializeDB()
