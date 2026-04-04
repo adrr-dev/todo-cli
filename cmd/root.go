@@ -4,6 +4,7 @@ package cmd
 import (
 	"os"
 
+	"github.com/adrr-dev/todo-cli/internal/repository"
 	"github.com/spf13/cobra"
 )
 
@@ -12,6 +13,22 @@ var rootCmd = &cobra.Command{
 	Use:   "todo-cli",
 	Short: "a simple todo cli",
 	Long:  `a todo cli that can add, delete, list, update, and complete your todo`,
+}
+
+type TodoService interface {
+	CreateTodo(content string) error
+	FetchTodo(id string) (*repository.Todo, error)
+	RemoveTodo(id string) error
+	ListTodos() (map[string]*repository.Todo, error)
+	PutTodo(id, content string) (*repository.Todo, error)
+	CompleteTodo(id string) error
+}
+
+var todoService TodoService
+
+// SetService allows your main.go to "plug in" the implementation
+func SetService(s TodoService) {
+	todoService = s
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

@@ -11,10 +11,17 @@ var addCmd = &cobra.Command{
 	Use:   "add [todo]",
 	Short: "Add a new todo to your list",
 	Args:  cobra.ExactArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
-		task := args[0]
-		fmt.Printf("Adding todo: %s\n", task)
-	},
+	RunE:  addTodo,
+}
+
+func addTodo(cmd *cobra.Command, args []string) error {
+	todo := args[0]
+	err := todoService.CreateTodo(todo)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("new todo created '%s'", todo)
+	return nil
 }
 
 func init() {

@@ -3,7 +3,6 @@ package service
 
 import (
 	"fmt"
-	"log"
 	"strconv"
 
 	"github.com/adrr-dev/todo-cli/internal/repository"
@@ -41,7 +40,6 @@ func (s Service) CreateTodo(content string) error {
 		return err
 	}
 
-	log.Println("new book created", todos[strID])
 	return nil
 }
 
@@ -65,7 +63,6 @@ func (s Service) RemoveTodo(id string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("book with id: %s has been deleted\n", id)
 	return nil
 }
 
@@ -80,7 +77,6 @@ func (s Service) ListTodos() (map[string]*repository.Todo, error) {
 func (s Service) PutTodo(id, content string) (*repository.Todo, error) {
 	data, err := s.Repo.LoadAll()
 	if err != nil {
-		log.Println("something went wrong here")
 		return nil, err
 	}
 	data[id].Content = content
@@ -89,4 +85,25 @@ func (s Service) PutTodo(id, content string) (*repository.Todo, error) {
 		return nil, err
 	}
 	return data[id], nil
+}
+
+func (s Service) CompleteTodo(id string) error {
+	data, err := s.Repo.LoadAll()
+	if err != nil {
+		return err
+	}
+
+	value, ok := data[id]
+	if ok {
+		value.Completed = !value.Completed
+	} else {
+		return fmt.Errorf("todo not found: %e", err)
+	}
+
+	err = s.Repo.WriteAll(data)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
