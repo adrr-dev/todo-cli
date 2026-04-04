@@ -30,7 +30,7 @@ func deleteTodo(cmd *cobra.Command, args []string) error {
 func init() {
 	rootCmd.AddCommand(deleteCmd)
 
-	deleteCmd.Flags().IntP("id", "i", -1, "id to edit")
+	deleteCmd.Flags().IntP("id", "i", 0, "id to edit")
 
 	if err := deleteCmd.MarkFlagRequired("id"); err != nil {
 		fmt.Println(err)

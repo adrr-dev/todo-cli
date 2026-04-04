@@ -35,7 +35,7 @@ func editTodo(cmd *cobra.Command, args []string) error {
 func init() {
 	rootCmd.AddCommand(editCmd)
 
-	editCmd.Flags().IntP("id", "i", -1, "id to edit")
+	editCmd.Flags().IntP("id", "i", 0, "id to edit")
 	editCmd.Flags().StringP("content", "c", "empty", "content of todo")
 
 	if err := editCmd.MarkFlagRequired("id"); err != nil {

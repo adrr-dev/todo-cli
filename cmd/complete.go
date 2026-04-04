@@ -30,7 +30,7 @@ func completeTodo(cmd *cobra.Command, args []string) error {
 func init() {
 	rootCmd.AddCommand(completeCmd)
 
-	completeCmd.Flags().IntP("id", "i", -1, "id to edit")
+	completeCmd.Flags().IntP("id", "i", 0, "id to edit")
 
 	if err := completeCmd.MarkFlagRequired("id"); err != nil {
 		fmt.Println(err)
