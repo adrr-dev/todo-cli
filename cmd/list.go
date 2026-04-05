@@ -24,12 +24,13 @@ func ShowTodos(cmd *cobra.Command, args []string) error {
 
 	w := tabwriter.NewWriter(os.Stdout, 1, 1, 1, ' ', tabwriter.Debug)
 
-	_, err = fmt.Fprintln(w, "ID\tTodo\tCompleted")
+	_, err = fmt.Fprintln(w, "ID\tTodo\tCompleted\tCreated At")
 	if err != nil {
 		return err
 	}
 	for _, value := range data {
-		_, err = fmt.Fprintf(w, "%d\t%s\t%t\n", value.ID, value.Content, value.Completed)
+		createAt := fmt.Sprint(value.CreatedAt.Format("02-Jan-2006 15:04"))
+		_, err = fmt.Fprintf(w, "%d\t%s\t%t\tdate: %s\n", value.ID, value.Content, value.Completed, createAt)
 		if err != nil {
 			return err
 		}
